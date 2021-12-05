@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://demoadmin:demoadmin123@devconnector.1wapg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://demoadmin:demoadmin123@devconnector.1wapg.mongodb.net/dcdb?retryWrites=true&w=majority",
+    "jwtSecret": "demoSecret"
 }
