@@ -1,24 +1,28 @@
-import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/layouts/Navbar';
-import Landing from './components/layouts/Landing';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
-import Alert from './components/layouts/Alert';
-import setAuthToken from './utils/setAuthToken';
-import { loadUser } from './actions/auth';
-import './App.css';
+import React, { Fragment, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/layouts/Navbar";
+import Landing from "./components/layouts/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Alert from "./components/layouts/Alert";
+import Dashboard from "./components/dashboard/Dashboard";
+import CreateProfile from "./components/profile-forms/CreateProfile";
+import EditProfile from "./components/profile-forms/EditProfile";
+import AddExperience from "./components/profile-forms/AddExperience";
+import AddEducation from "./components/profile-forms/AddEducation";
+import setAuthToken from "./utils/setAuthToken";
+import { loadUser } from "./actions/auth";
+import "./App.css";
 
 // Redux
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
-
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -29,19 +33,24 @@ const App = () => {
         <Fragment>
           <Navbar />
           <Routes>
-            <Route path='/' element={<Landing />} />
+            <Route path="/" element={<Landing />} />
           </Routes>
           <section className="container">
             <Alert />
-              <Routes>
-                <Route path='/register' element={<Register />} />
-                <Route path='/login' element={<Login />} />
-              </Routes>
+            <Routes>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/create-profile" element={<CreateProfile />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+              <Route path="/add-experience" element={<AddExperience />} />
+              <Route path="/add-education" element={<AddEducation />} />
+            </Routes>
           </section>
         </Fragment>
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;
